@@ -1,3 +1,15 @@
+import nltk
+nltk.download('punkt')
+nltk.download('stopwords')
+
+import streamlit as st
+from wordcloud import WordCloud
+from nltk.tokenize import word_tokenize
+from nltk.corpus import stopwords
+from collections import Counter
+import matplotlib.pyplot as plt
+
+# Rest of your code here...
 import streamlit as st
 from wordcloud import WordCloud
 from nltk.tokenize import word_tokenize
