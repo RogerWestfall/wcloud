@@ -58,11 +58,14 @@ def main():
 
     if st.button("Generate Word Cloud"):
         word_freq = process_text(text_input, max_words, text_case_option)
-        text_color = 'black'
-        bg_color = 'white'
-        color_func = None
         
-        if text_color_option == "Colorful":
+        if text_color_option == "Black on White":
+            text_color = 'black'
+            bg_color = 'white'
+            color_func = None
+        else:
+            text_color = None
+            bg_color = 'white'
             # Define a custom color function that randomly selects colors
             def random_color_func(word=None, font_size=None, position=None, orientation=None, font_path=None, random_state=None):
                 h = int(360.0 * np.random.rand())
