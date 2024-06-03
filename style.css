@@ -1,0 +1,44 @@
+body {
+    background-color: #97F2EF;
+    font-family: 'Arial', sans-serif;
+    color: #333;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #444;
+    text-align: center;
+}
+
+.stButton>button {
+    background-color: #20B2AA;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.stButton>button:hover {
+    background-color: #008080;
+}
+
+.stSidebar {
+    background-color: #B2DFDB;
+}
+
+.stSidebar h2 {
+    color: #333;
+}
+
+.stSlider {
+    color: #333;
+}
+
+.stTextArea>label {
+    color: #333;
+}
+
+.stSelectbox>label {
+    color: #333;
+}
