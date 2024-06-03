@@ -1,25 +1,13 @@
-import nltk
-nltk.download('punkt')
-nltk.download('stopwords')
-
 import streamlit as st
+from wordcloud import WordCloud
+from nltk.tokenize import word_tokenize
+from nltk.corpus import stopwords
+from collections import Counter
+import matplotlib.pyplot as plt
+import numpy as np
 
 # Disable PyplotGlobalUse warning
 st.set_option('deprecation.showPyplotGlobalUse', False)
-
-from wordcloud import WordCloud
-from nltk.tokenize import word_tokenize
-from nltk.corpus import stopwords
-from collections import Counter
-import matplotlib.pyplot as plt
-
-# Rest of your code here...
-import streamlit as st
-from wordcloud import WordCloud
-from nltk.tokenize import word_tokenize
-from nltk.corpus import stopwords
-from collections import Counter
-import matplotlib.pyplot as plt
 
 # Function to process text data
 def process_text(text, max_words=50, text_case='Lower case'):
@@ -44,14 +32,14 @@ def process_text(text, max_words=50, text_case='Lower case'):
     
     return word_freq
 
-# Function to generate word cloud
-def generate_wordcloud(word_freq, text_color='black', bg_color='white'):
-    wordcloud = WordCloud(width=800, height=400, background_color=bg_color, colormap='viridis', color_func=lambda *args, **kwargs: text_color)
+# Modify the generate_wordcloud function to handle color_func correctly
+def generate_wordcloud(word_freq, text_color='black', bg_color='white', color_func=None):
+    wordcloud = WordCloud(width=800, height=400, background_color=bg_color, color_func=color_func)
     wordcloud.generate_from_frequencies(word_freq)
-    plt.figure(figsize=(10, 5))
-    plt.imshow(wordcloud, interpolation='bilinear')
-    plt.axis('off')
-    st.pyplot()
+    fig, ax = plt.subplots(figsize=(10, 5))
+    ax.imshow(wordcloud, interpolation='bilinear')
+    ax.axis('off')
+    return fig
 
 # Main function
 def main():
@@ -68,9 +56,20 @@ def main():
         word_freq = process_text(text_input, max_words, text_case_option)
         text_color = 'black'
         bg_color = 'white'
+        color_func = None
+        
         if text_color_option == "Colorful":
-            text_color = None
-        generate_wordcloud(word_freq, text_color, bg_color)
+            # Define a custom color function that randomly selects colors
+            def random_color_func(word=None, font_size=None, position=None, orientation=None, font_path=None, random_state=None):
+                h = int(360.0 * np.random.rand())
+                s = int(100.0 * np.random.rand())
+                l = int(100.0 * np.random.rand())
+                return f"hsl({h}, {s}%, {l}%)"
+            
+            color_func = random_color_func
+
+        fig = generate_wordcloud(word_freq, text_color, bg_color, color_func)
+        st.pyplot(fig)
 
 if __name__ == "__main__":
     main()
