@@ -13,6 +13,11 @@ import numpy as np
 # Disable PyplotGlobalUse warning
 st.set_option('deprecation.showPyplotGlobalUse', False)
 
+# Load custom CSS
+def load_css(file_name):
+    with open(file_name) as f:
+        st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
+
 # Function to process text data
 def process_text(text, max_words=50, text_case='Lower case'):
     # Tokenization
@@ -47,6 +52,7 @@ def generate_wordcloud(word_freq, text_color='black', bg_color='white', color_fu
 
 # Main function
 def main():
+    load_css('style.css')
     st.title("Word Cloud Generator")
 
     st.sidebar.header("Settings")
