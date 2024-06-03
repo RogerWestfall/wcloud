@@ -3,6 +3,10 @@ nltk.download('punkt')
 nltk.download('stopwords')
 
 import streamlit as st
+
+# Disable PyplotGlobalUse warning
+st.set_option('deprecation.showPyplotGlobalUse', False)
+
 from wordcloud import WordCloud
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
