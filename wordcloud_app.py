@@ -47,7 +47,6 @@ def generate_wordcloud(word_freq, text_color='black', bg_color='white', color_fu
 
 # Main function
 def main():
-   def main():
     st.title("Word Cloud Generator")
 
     st.sidebar.header("Settings")
@@ -78,7 +77,6 @@ def main():
 
         fig = generate_wordcloud(word_freq, text_color, bg_color, color_func)
         st.pyplot(fig)
-
 
 if __name__ == "__main__":
     main()
