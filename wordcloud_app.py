@@ -11,7 +11,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 # Disable PyplotGlobalUse warning
-st.set_option('deprecation.showPyplotGlobalUse', False)
+st.set_option('deprecation.showPyplotGlobalUse', True)
 
 # Load custom CSS
 def load_css(file_name):
